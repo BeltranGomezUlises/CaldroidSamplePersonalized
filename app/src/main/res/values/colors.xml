@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f6d413</color>
+    <color name="colorPrimaryDark">#cfb311</color>
+    <color name="colorAccent">#006cb7</color>
+    <color name="blueCoppelDark">#006cb7</color>
+    <color name="blueCoppelLigth">#4091c9</color>
+    <color name="priceColor">#535353</color>
+    <color name="blanco">#FFF</color>
+    <color name="WhiteClor">#FFFFFF</color>
+
+    <!-- calendar colors -->
+    <color name="CalendarWhite">#F7F7F7</color>
+    <color name="CalendarNextPrevMonth">#7BB5D4</color>
+    <color name="CalendarSelected">#C5C5C5</color>
+
+
+
+</resources>
