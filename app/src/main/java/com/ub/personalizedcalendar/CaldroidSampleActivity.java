@@ -10,8 +10,16 @@ import android.view.View;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Map;
 
 import hirondelle.date4j.DateTime;
@@ -20,18 +28,64 @@ public class CaldroidSampleActivity extends AppCompatActivity {
 
     private CaldroidFragment caldroidFragment;
     private Date selectedDate;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     private void setCustomResourceForDates() {
-
         if (caldroidFragment != null) {
-            Date today = Calendar.getInstance().getTime();
-            selectedDate = today;
-            caldroidFragment.setMinDate(today); //fecha minima hoy
+            try {
 
-            ColorDrawable gray = new ColorDrawable(getResources().getColor(R.color.CalendarSelected));
-            caldroidFragment.setBackgroundDrawableForDate(gray, today);
+                ArrayList<Date> fechas = new ArrayList<>();
+                fechas.add(sdf.parse("2017-05-06"));
+                fechas.add(sdf.parse("2017-05-08"));
+                fechas.add(sdf.parse("2017-05-09"));
+                fechas.add(sdf.parse("2017-05-10"));
+                fechas.add(sdf.parse("2017-05-11"));
+                fechas.add(sdf.parse("2017-05-12"));
+                fechas.add(sdf.parse("2017-05-13"));
+                fechas.add(sdf.parse("2017-05-06"));
+                fechas.add(sdf.parse("2017-05-15"));
+
+                Collections.sort(fechas);
+
+                //la fecha mayor es el indice 0, la mayor el ultimo indice
+                Date minDate = fechas.get(0);
+                Date maxDate = fechas.get(fechas.size() - 1);
+
+
+                caldroidFragment.setSelectedDate(minDate);
+                caldroidFragment.setMinDate(minDate);
+                caldroidFragment.setMaxDate(maxDate);
+                caldroidFragment.setDisableDates(fechasFaltantes(minDate, maxDate, fechas));
+
+                selectedDate = minDate;
+
+
+                ColorDrawable gray = new ColorDrawable(getResources().getColor(R.color.CalendarSelected));
+                caldroidFragment.setBackgroundDrawableForDate(gray, minDate);
+
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
 
         }
+    }
+
+    private ArrayList<Date> fechasFaltantes(Date minDate, Date maxDate, ArrayList<Date> dates){
+        ArrayList<Date> fechasFaltantes = new ArrayList<>();
+
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(minDate);
+
+        while (cal.getTime().compareTo(maxDate) != 0) {
+            if (!dates.contains(cal.getTime())) {
+                fechasFaltantes.add(cal.getTime());
+            }
+            cal.add(Calendar.DATE, 1);
+        }
+
+        return fechasFaltantes;
     }
 
     @Override
@@ -65,6 +119,8 @@ public class CaldroidSampleActivity extends AppCompatActivity {
 
             @Override
             public void onSelectDate(Date date, View view) {
+                System.out.println(date);
+
                 int month = caldroidFragment.getMonth();
                 if (!(date.getMonth() + 1 > month)){
                     //reset the prev date
@@ -99,7 +155,6 @@ public class CaldroidSampleActivity extends AppCompatActivity {
         });
 
     }
-
 
 
 }

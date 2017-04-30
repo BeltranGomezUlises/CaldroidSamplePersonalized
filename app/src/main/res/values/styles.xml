@@ -14,6 +14,18 @@
         <item name="styleCaldroidMonthName">@style/MonthName</item>
         <item name="styleCaldroidSquareCell">@style/SquareCell</item>
         <item name="styleCaldroidGridView">@style/CaldroidDefaultDarkGridView</item>
+        <item name="styleCaldroidLeftArrow">@style/leftButton</item>
+        <item name="styleCaldroidRightArrow">@style/rigthButton</item>
+    </style>
+
+    <style name="leftButton" parent="CaldroidDefaultArrowButton">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:background">@drawable/left_arrow</item>
+    </style>
+
+    <style name="rigthButton" parent="CaldroidDefaultArrowButton">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@drawable/right_arrow</item>
     </style>
 
     <style name="ViewLayout">
@@ -28,6 +40,9 @@
     <style name="SquareCell" parent="CaldroidDefaultDarkCell" >
         <item name="android:padding">5dp</item>
         <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">@drawable/calendar_cell_text_color</item>
+        <item name="android:background">@drawable/calendar_cell_background</item>
+
     </style>
 
 </resources>
