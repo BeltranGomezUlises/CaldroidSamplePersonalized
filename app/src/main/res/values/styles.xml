@@ -20,12 +20,12 @@
 
     <style name="leftButton" parent="CaldroidDefaultArrowButton">
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:background">@drawable/left_arrow</item>
+        <item name="android:background">@drawable/calendar_left_arrow</item>
     </style>
 
     <style name="rigthButton" parent="CaldroidDefaultArrowButton">
         <item name="android:layout_alignParentRight">true</item>
-        <item name="android:background">@drawable/right_arrow</item>
+        <item name="android:background">@drawable/calendar_rigth_arrow</item>
     </style>
 
     <style name="ViewLayout">
